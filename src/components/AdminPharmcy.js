@@ -36,7 +36,7 @@ const AdminPharmcy = () => {
                 return
             }
             const response = await axios.post("https://hospital-managemant-tch.onrender.com/admin/post_item", { prodName, img, price, qty })
-            console.log(response.data.products);
+            // console.log(response.data.products);
             if (response.status === 200) {
                 alert("Posted Successfully")
                 const newProd = response.data.products
@@ -50,7 +50,7 @@ const AdminPharmcy = () => {
                 alert("Cannot post product")
             }
         } catch (error) {
-            console.log(error);
+            // console.log(error);
 
         }
 
@@ -60,13 +60,13 @@ const AdminPharmcy = () => {
         const getProd = async () => {
             try {
                 const response = await axios.get("https://hospital-managemant-tch.onrender.com/admin/get_products")
-                console.log(response.data.pharmacy);
+                // console.log(response.data.pharmacy);
                 if (response) {
                     setallProducts(response.data.pharmacy)
                 }
 
             } catch (error) {
-                console.log(error);
+                // console.log(error);
 
             }
 
@@ -87,7 +87,7 @@ const AdminPharmcy = () => {
             }
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             toast.error(error)
 
         }
@@ -134,7 +134,7 @@ const AdminPharmcy = () => {
                 </div>
                 <div className='w-50 mx-auto shadow'>
                     <div>
-                        <label htmlFor="">Item name</label>
+                        <label htmlFor="">Item Picture</label>
                         <input className='form-control' onChange={(e) => handleChange(e)} ref={fileRef} type="file" />
                     </div>
                     <div>

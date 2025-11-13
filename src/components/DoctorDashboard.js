@@ -20,7 +20,7 @@ const DoctorDashboard = () => {
   
   const dispatch = useDispatch()
   let { isFetching, allDoctor, fetcherror, allAppointment } = useSelector(state => state.doctorSlice)
-  console.log(allAppointment);
+  // console.log(allAppointment);
   
   useEffect(() => {
     dispatch(fetchingData())
@@ -36,7 +36,7 @@ const DoctorDashboard = () => {
         "Authorization": `bearer ${token}`
       }
     }).then((res) => {
-      console.log(res.data.doctor);
+      // console.log(res.data.doctor);
       if (res?.data?.doctor) {
         // setUserData(res.data.doctor)
         dispatch(fetchDoctor(res.data.doctor))
@@ -49,7 +49,7 @@ const DoctorDashboard = () => {
 
 
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
       // alert("Unauthorized Entry!!!")
       
       if (err.response) {

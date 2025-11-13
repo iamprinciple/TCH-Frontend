@@ -32,11 +32,11 @@ const Profile = () => {
       }
     }
     ).then((res) => {
-      console.log(res.data.message);
+      // console.log(res.data.message);
       setMessage(res.data.message)
 
     }).catch((err) => {
-      console.log(err.response.data.message);
+      // console.log(err.response.data.message);
       setError(err.response.data.message)
     })
   }
@@ -113,9 +113,6 @@ const Profile = () => {
             </div>
           </div>
         </div>
-
-        {/* <button type='submit'>Update Profile</button> */}
-        {/* </form> */}
       </div>
     </>
   )

@@ -21,14 +21,14 @@ const DocAppointment = () => {
             "Authorization": `bearer ${token}`
           }
         }).then((res)=>{
-          console.log(res.data.docAppointment);
+          // console.log(res.data.docAppointment);
           if (res.data.docAppointment) {
             setallAppointment(res.data.docAppointment)
             setLoading(false)
           }
           
         }).catch((err)=>{
-          console.log(err);
+          // console.log(err);
           setError(err.response.data.message)
           
         })
@@ -39,14 +39,14 @@ const DocAppointment = () => {
   const handleStatusUpdate = async(id, status)=>{
     try {
         const response = await axios.put(`https://hospital-managemant-tch.onrender.com/doctor/your_appointment/${id}/status`, {status, allAppointment})
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setUpdatedAppointment((prev)=> prev.map((appointment)=>
         appointment._id === id ? {...appointment, status} : appointment
       )
     )
         
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         setError(error)
     }
   }

@@ -1,12 +1,13 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 
 const Prescription = () => {
     const { allAppointment } = useOutletContext()
-    console.log(allAppointment);
+    // console.log(allAppointment);
     const allPatient = new Map()
-    console.log(allPatient);
+    // console.log(allPatient);
     
     allAppointment.forEach(patient => {
         if (!allPatient.has(patient.userId)) {
@@ -15,11 +16,9 @@ const Prescription = () => {
     });
     
     const patientList = Array.from(allPatient.values())
-    console.log(patientList);
 
     const [prescription , setPrescription] = useState("")
     const submit = async (id) =>{
-        console.log(id);
         
         if (!prescription) {
             alert("Field can not be empty!")
@@ -27,11 +26,12 @@ const Prescription = () => {
         }
         axios.post(`https://hospital-managemant-tch.onrender.com/doctor/prescription/${id}`, {prescription, patientList})
         .then((res)=>{
-            console.log(res);
-            
+            // console.log(res);
+            toast.success("Prescription sent successfully!")
+            setPrescription("")
         }).catch((err)=>{
-            console.log(err);
-            
+            // console.log(err);
+            toast.error("Failed to send! Try again")
         })
     }
 
@@ -64,6 +64,7 @@ const Prescription = () => {
                     
                 ))}
                 </tbody>
+                <ToastContainer/>
             </table>
             )}
         </div>

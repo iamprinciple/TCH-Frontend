@@ -9,6 +9,7 @@ const AppointmentStatus = () => {
 
     const userId = useSelector((state) => state.userSlice.alluser._id)
     // console.log(userId);
+    
 
     useEffect(()=>{
         const getAppt = async () =>{
@@ -27,6 +28,26 @@ const AppointmentStatus = () => {
             getAppt()
         }
     },[userId])
+
+    const handleDelete = async(id) =>{
+        console.log(id);
+        
+        if (window.confirm("Do you want to cancel this appointment?")) {
+            try {
+                await axios.delete(`https://hospital-managemant-tch.onrender.com/user/appointments/${id}`)
+                alert("Appointment cancelled successfully!");
+                setAppointments((prev) => prev.filter((appt) => appt._id !== id))
+                
+            } catch (error) {
+                console.log(error);
+                alert("This feature is unavailable at the time")
+                
+                
+            }
+        }else{
+            return
+        }
+    }
 
     if (loading) {
         return <p>Loading appointments...</p>
@@ -59,6 +80,7 @@ const AppointmentStatus = () => {
                         <td>{appointment.reason}</td>
                         <td>{appointment.selectedTime}</td>
                         <td>{appointment.status}</td>
+                        <td><button className="btn btn-danger" onClick={() => handleDelete(appointment._id)}>Cancel</button></td>
                     </tr>
                 ))}
             </tbody>

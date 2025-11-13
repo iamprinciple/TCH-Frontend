@@ -35,8 +35,7 @@ const Signin = () => {
         onSubmit: async (value) => {
             setLoading(true)
             try {
-                const response = await axios.post("https://hospital-managemant-tch.onrender.com/user/signup", value)
-                console.log(response);
+                await axios.post("https://hospital-managemant-tch.onrender.com/user/signup", value)
                 toast.success("signup successful ✅",{
                     onClose:()=> navigate('/login'),
                     autoClose: 3000

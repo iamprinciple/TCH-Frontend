@@ -1,24 +1,9 @@
-import axios from 'axios'
 import React from 'react'
 import { useOutletContext } from 'react-router-dom'
 
 const AdminLanding = () => {
     
     const { admin, doctors, patient, appointments, setAppointments } = useOutletContext()
-    
-    const handleDelete= async (id) =>{
-        if (window.confirm("Are you sure you want to delete this appointment?")) {
-            try {
-               await axios.delete(`https://hospital-managemant-tch.onrender.com/admin/appointments/${id}`)
-                setAppointments((prev) => prev.filter((appt) => appt._id !== id))
-            } catch (error) {
-                console.log("Error deleting");
-                
-                
-            }
-        }
-        
-    }
 
     return (
         <>

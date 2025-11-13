@@ -5,13 +5,13 @@ const DocMain = () => {
     const  allDoctor  = useSelector((state => state.doctorSlice.allDoctor))
     
     const { allAppointment } = useOutletContext()
-    console.log(allAppointment);
+    // console.log(allAppointment);
     
     const approvedAppointments = allAppointment.filter(appointment => appointment.status === "Approved");
-    console.log(approvedAppointments);
+    // console.log(approvedAppointments);
     
     const allPatient = new Set(approvedAppointments.map(patient => patient.userId));
-   console.log(allPatient);
+//    console.log(allPatient);
    
     
     return (

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const DoctorLanding = () => {
   const  allDoctor  = useSelector((state)=> state.doctorSlice.allDoctor)
-  console.log(allDoctor);
+  // console.log(allDoctor);
   
   const isProfileComplete = allDoctor?.specialization && allDoctor?.experience;
 

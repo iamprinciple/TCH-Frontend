@@ -15,8 +15,7 @@ const Bookings = () => {
     const [aptType, setAptType] = useState("")
     const [reason, setReason] = useState("")
     const [selectedTime, setSelectedTime] = useState('');
-    const [error, setError] = useState(null);
-    const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     let userId = localStorage.getItem("id")
     let token = localStorage.getItem("keen")
@@ -25,7 +24,7 @@ const Bookings = () => {
         return <p>No doctor details available</p>
     }
     const handleSubmit = () => {
-
+        setLoading(true)
         if (!selectedTime || !aptType || !reason) {
             alert('Please select a time, appointment type, and provide a reason.');
             return;
@@ -37,15 +36,15 @@ const Bookings = () => {
             },
 
         }).then((res) => {
-            console.log(res);
+            // console.log(res);
             toast.success(res.data.message)
-            // setMessage(res.data.message)
+            setLoading(false)
             setAptType("")
             setReason("")
             setSelectedTime("")
         }).catch((err) => {
-            console.log(err);
-            // setError(err.response.data.message)
+            // console.log(err);
+            setLoading(false)
             toast.error(err.response.data.message)
             setAptType("")
             setReason("")
@@ -96,9 +95,7 @@ const Bookings = () => {
                             <input style={{ width: "50%", height: "40px" }} type="text" className='form-control' value={reason} name='reason' onChange={(e) => setReason(e.target.value)} placeholder='Reason for visit' />
 
                         </div>
-                        {error && <strong className='text-danger'>{error}</strong>}
-                        {message && <strong>{message}</strong>}
-                        <button onClick={handleSubmit}>Create Appointment</button>
+                        <button className='btn btn-primary' onClick={handleSubmit} disabled={loading}>{loading? "Please wait..." : "Create Appointment"}</button>
 
                     </div>
                     <ToastContainer/>

@@ -30,7 +30,7 @@ const AdminDashboard = () => {
 
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         setError(error.message)
 
       }
@@ -63,7 +63,7 @@ const AdminDashboard = () => {
       }
 
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
       // alert("Forbidden entry!!!")
       localStorage.removeItem("keen");
       localStorage.removeItem("id");

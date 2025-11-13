@@ -962,14 +962,24 @@ nav {
     display: none;
     width: 300px;
     height: 450px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 100;
   }
 
+.dropMenu.show {
+  display: flex;
+  
+}
   .dropdown:hover .dropMenu {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
   .patientDash div{
     flex-direction: row;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { Link, useSearchParams } from 'react-router-dom';
 
 
@@ -8,16 +8,14 @@ const Paymentstatus = () => {
     const reference = searchParams.get("reference")
     // const [status, setStatus] = useState("Verifying...")
     // const reference = new URLSearchParams(window.location.search).get('reference');
-    console.log(reference);
+    // console.log(reference);
     let userId = localStorage.getItem("id")
     useEffect(() => {
         if (reference) {
             const verifyPaymant = async () => {
                 try {
-                    const res = await axios.get(`https://hospital-managemant-tch.onrender.com/user/verify-payment/${reference}`,{params:{userId}});
-                    // const data = res.data;
-                    console.log(res.data);
-
+                    await axios.get(`https://hospital-managemant-tch.onrender.com/user/verify-payment/${reference}`,{params:{userId}});
+                   
                 } catch (error) {
                     console.log(error);
 
@@ -29,7 +27,7 @@ const Paymentstatus = () => {
         }
 
 
-    }, [reference])
+    }, [reference, userId])
     return (
         <div className='pay_status'>
             <h1>Payment Successful!</h1>

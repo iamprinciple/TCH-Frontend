@@ -11,6 +11,7 @@ const BookApointment = () => {
 
   const [allDoctors, setallDoctors] = useState([]);
   const [search, setsearch] = useState("");
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null)
   let token = localStorage.getItem("keen")
   let userId = localStorage.getItem("id")
@@ -32,8 +33,10 @@ const BookApointment = () => {
           setallDoctors(response.data.doctors)
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         setError(error.message)
+      }finally{
+        setLoading(false)
       }
 
 
@@ -57,10 +60,12 @@ const BookApointment = () => {
           <div className='docs'>
             <div className='doc_header'>
               <h3>Available Doctors</h3>
-              <input onInput={(e)=> setsearch(e.target.value)}  type="text" placeholder='Search Doctor by speciaization' />
+              <input onInput={(e)=> setsearch(e.target.value)}  type="text" placeholder='Search Doctor by specialization' />
             </div>
 
-            {filteredDoc.length > 0 ? (
+            {loading? (
+              <p style={{textAlign:"center"}}>LOADING...</p>
+            ):filteredDoc.length > 0 ? (
               filteredDoc.map((onedoc, index) => (
                 <div id='book_menu' key={index} style={{ border: "1px solid #ccc", padding: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", textAlign: "center", alignItems:"center"}}>
                   <img src={onedoc.image} alt={onedoc.firstname} style={{ width: "50px", height: "50px", borderRadius: "50%" }} />
